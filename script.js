@@ -10,8 +10,6 @@ window.addEventListener("load", function() {
          alert("All fields are required!");
          // stop the form submission
          event.preventDefault();
-         // console.log("if pilot field empty", pilotName.value);
-         // console.log("if co-pilot field empty", copilotName.value);
       }
 
       if((isNaN(fuelLevel.value)) || (isNaN(cargoMass.value))){
@@ -34,6 +32,24 @@ window.addEventListener("load", function() {
 
       });
    });
+
+
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+   response.json().then( function(json) {
+      const div = document.getElementById("missionTarget");
+      div.innerHTML = `
+      <h2>Mission Destination</h2>
+         <ol>
+         <li>Name: ${json.name}</li>
+         <li>Diameter: ${json.diameter}</li>
+         <li>Star: ${json.star}</li>
+         <li>Distance from Earth: ${json.distance}</li>
+         <li>Number of Moons: ${json.moons}</li>
+         </ol>
+         <img src="${json.image}">
+         `
+   });
+});
 
 
    //    fetch("form").then( function(response) {
@@ -71,20 +87,7 @@ window.addEventListener("load", function() {
 // </ol>
 // <img src="${}">
 
-// fetch("form").then( function(response) {
-//    response.json().then( function(json) {
-//       const div = document.getElementById("missionTarget");
-//       div.innerHTML = `
-//       <h2>Mission Destination</h2>
-//          <ol>
-//          <li>Name: ${}</li>
-//          <li>Diameter: ${}</li>
-//          <li>Star: ${}</li>
-//          <li>Distance from Earth: ${}</li>
-//          <li>Number of Moons: ${}</li>
-//          </ol>
-//          <img src="${}">
-//          `
+// 
 
 
 
