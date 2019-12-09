@@ -6,26 +6,55 @@ window.addEventListener("load", function() {
       let coPilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel =  document.querySelector("input[name=fuelLevel]");
       let cargoMass =  document.querySelector("input[name=cargoMass]");
-      if (pilotName.value === "" || coPilotName.value === "") {
+      if (pilotName.value === "" || coPilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
          alert("All fields are required!");
          // stop the form submission
+         event.preventDefault();
+         // console.log("if pilot field empty", pilotName.value);
+         // console.log("if co-pilot field empty", copilotName.value);
+      }
+
+      if((isNaN(fuelLevel.value)) || (isNaN(cargoMass.value))){
+         alert("Please enter a valid number input");
+         // stop the form submissionq
          event.preventDefault();
       }
 
-      if(fuelLevel.value === "" || cargoMass.value === ""){
-         alert("All fields are required!");
-         // stop the form submission
-         event.preventDefault();
-      }else if((fuelLevel = isNaN(value)) || (cargoMass = isNaN(value))){
-         alert("Fuel Level and/or Cargo Mass input is not a Number");
-         // stop the form submission
+      if((!isNaN(pilotName.value)) || (!isNaN(coPilotName.value))){
+         alert("Please enter valid name in text");
+         // stop the form submission 
          event.preventDefault();
       }
+
+      
+
+      
+
+      
+
       });
-
-      
-      
    });
+
+
+   //    fetch("form").then( function(response) {
+   //       response.json().then( function(json) {
+
+
+
+
+   //          const div = document.getElementById("launchStatusCheck");
+   //          div.innerHTML = `
+   //          <h2>Mission Destination</h2>
+   //             <ol>
+   //             <li>Pilot ${} is ready for launch.</li>
+   //             <li>Co-Pilot ${}is ready for launch.</li>
+   //             <li>Fuel Level ${}</li>
+   //             <li>Cargo Mass ${}</li>
+   //             </ol>
+   //             <img src="${}">
+   //             `
+      
+   // });
 
    
 
@@ -41,4 +70,21 @@ window.addEventListener("load", function() {
 //    <li>Number of Moons: ${}</li>
 // </ol>
 // <img src="${}">
+
+// fetch("form").then( function(response) {
+//    response.json().then( function(json) {
+//       const div = document.getElementById("missionTarget");
+//       div.innerHTML = `
+//       <h2>Mission Destination</h2>
+//          <ol>
+//          <li>Name: ${}</li>
+//          <li>Diameter: ${}</li>
+//          <li>Star: ${}</li>
+//          <li>Distance from Earth: ${}</li>
+//          <li>Number of Moons: ${}</li>
+//          </ol>
+//          <img src="${}">
+//          `
+
+
 
