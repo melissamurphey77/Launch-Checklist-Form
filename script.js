@@ -1,11 +1,34 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
+
+      fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+         response.json().then( function(json) {
+         let journeyArray = response.json().length;
+         alert("To prepare for your destination, please enter information.");
+         console.log(journeyArray);
+         const div = document.getElementById("missionTarget");
+            div.innerHTML = `
+               <h2>Mission Destination</h2>
+                  <ol>
+                     <li>Name: ${json[2].name}</li>
+                     <li>Diameter: ${json[2].diameter}</li>
+                     <li>Star: ${json[2].star}</li>
+                     <li>Distance from Earth: ${json[2].distance}</li>
+                     <li>Number of Moons: ${json[2].moons}</li>
+                  </ol>
+                  <img src="${json[2].image}">
+                  `
+      });
+   });
+
+
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
       let pilotName = document.querySelector("input[name=pilotName]");
       let coPilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel =  document.querySelector("input[name=fuelLevel]");
       let cargoMass =  document.querySelector("input[name=cargoMass]");
+      // let launchReady = false;
       if (pilotName.value === "" || coPilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
          alert("All fields are required!");
          // stop the form submission
@@ -43,6 +66,7 @@ window.addEventListener("load", function() {
 
       if((fuelLevel.value > 10000) && (cargoMass.value < 10000)){
          alert("Shuttle is ready for journey.");
+         // launchReady = true;
                
          const div = document.getElementById("launchStatusCheck");
             div.innerHTML = `
@@ -91,27 +115,16 @@ window.addEventListener("load", function() {
                            `
                            event.preventDefault();
          }//End of 4th condition
+
+            
+
+
          
 
 
    });
    
-//    fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-//    response.json().then( function(json) {
-//       const div = document.getElementById("missionTarget");
-//       div.innerHTML = `
-//       <h2>Mission Destination</h2>
-//          <ol>
-//          <li>Name: ${json.name}</li>
-//          <li>Diameter: ${json.diameter}</li>
-//          <li>Star: ${json.star}</li>
-//          <li>Distance from Earth: ${json.distance}</li>
-//          <li>Number of Moons: ${json.moons}</li>
-//          </ol>
-//          <img src="${json.image}">
-//          `
-//    });
-// });
+   
 
 
 
@@ -121,6 +134,29 @@ window.addEventListener("load", function() {
 
 
    });
+
+
+//    if(launchReady === true){
+//       fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+//          response.json().then( function(json) {
+//          let journeyArray = response.json();
+//          let randomJourney = journeyArray[Math.random() * journeyArray.length, [i]];
+//          alert(randomJourney.length);
+//          const div = document.getElementById("missionTarget");
+//             div.innerHTML = `
+//                <h2>Mission Destination</h2>
+//                   <ol>
+//                      <li>Name: ${randomJourney.name}</li>
+//                      <li>Diameter: ${randomJourney.diameter}</li>
+//                      <li>Star: ${randomJourney.star}</li>
+//                      <li>Distance from Earth: ${randomJourney.distance}</li>
+//                      <li>Number of Moons: ${randomJourney.moons}</li>
+//                   </ol>
+//                   <img src="${randomJourney.image}">
+//                   `
+// });
+// });
+// }
 
 
 
